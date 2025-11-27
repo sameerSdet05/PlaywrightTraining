@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "debug": "npx playwright test --debug",
+    "codegen": "npx playwright codegen https://www.saucedemo.com",
+    "show-report": "npx playwright show-report"
   },
   "keywords": [],
   "author": "Sameer",
