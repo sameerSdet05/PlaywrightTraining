@@ -10,7 +10,7 @@ class SauceInventoryPage {
     this.inventoryItems = page.locator('.inventory_item');
     
     // Cart badge showing item count
-    this.cartBadge = page.locator('.shopping_cart_badge');
+    this.cartBadge = page.locator('[data-test="shopping-cart-badge"]');
     
     // Cart icon/link
     this.cartLink = page.locator('[data-test="shopping-cart-link"]');
@@ -52,7 +52,7 @@ class SauceInventoryPage {
    * @returns Cart count as string, or null if badge not visible
    */
   async getCartCount() {
-    this.cartBadge.textContent();
+    await this.cartBadge.textContent();
   }
 
   /**

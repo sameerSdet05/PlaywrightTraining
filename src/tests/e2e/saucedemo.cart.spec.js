@@ -10,7 +10,7 @@ test.describe('SauceDemo - Cart Flow (POM)', () => {
     // Initialize page objects
     const loginPage = new SauceLoginPage(page);
     const inventoryPage = new SauceInventoryPage(page);
-    const cartPage = new SauceCartPage(page);
+    const cartPage = new SauceCartPage(page);   
 
     // Step 1: Login
     await loginPage.goto();
