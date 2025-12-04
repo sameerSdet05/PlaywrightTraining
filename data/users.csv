@@ -1,0 +1,7 @@
+username,password,expectedOutcome,description
+standard_user,secret_sauce,success,Standard user with full access
+locked_out_user,secret_sauce,locked,User account is locked
+problem_user,secret_sauce,success,User with product image issues
+performance_glitch_user,secret_sauce,success,User experiences performance delays
+error_user,secret_sauce,success,User encounters various errors
+visual_user,secret_sauce,success,User sees visual differences
