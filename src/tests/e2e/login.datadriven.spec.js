@@ -22,6 +22,7 @@ test.describe('SauceDemo - Data-Driven Login Tests', () => {
 
 
 test(`Login test for single user: ${users[1].username} (${users[1].description})`, async ({ page }) => {
+
     const loginPage = new SauceLoginPage(page);
     // Navigate to login page
     await loginPage.goto();

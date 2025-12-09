@@ -2,15 +2,17 @@ const { test, expect } = require('@playwright/test');
 const { SauceLoginPage } = require('../../pages/SauceLoginPage');
 const { SauceInventoryPage } = require('../../pages/SauceInventoryPage');
 const { SauceCartPage } = require('../../pages/SauceCartPage');
+const { SauceCheckoutPage } = require('../../pages/SauceCheckoutPage')
 
 
-test.describe('SauceDemo - Cart Flow (POM)', () => {
+test.describe('SauceDemo - Check Out Flow E2E Test - (POM)', () => {
 
-  test('add two items to cart, verify cart badge and contents', async ({ page }) => {
+  test('add two items to cart, verify cart badge and contents and procceed for checkout', async ({ page }) => {
     // Initialize page objects
     const loginPage = new SauceLoginPage(page);
     const inventoryPage = new SauceInventoryPage(page);
     const cartPage = new SauceCartPage(page);   
+    const checkoutPage = new SauceCheckoutPage(page);
 
     // Step 1: Login
     await loginPage.goto();
@@ -56,6 +58,32 @@ test.describe('SauceDemo - Cart Flow (POM)', () => {
     await expect(page).toHaveURL(/cart.html/);
 
     await cartPage.proceedToCheckout();
+
+      //Fill checkout information
+    await expect(page).toHaveURL(/checkout-step-one/);
+    
+    await checkoutPage.fillCustomerInfo('John', 'Doe', '12345');
+    await checkoutPage.continue();
+    
+    //Verify order summary
+    await expect(page).toHaveURL(/checkout-step-two/);
+    await checkoutPage.verifyOrderSummary(2);
+    
+    //Verify price calculation
+    await checkoutPage.verifyTotalCalculation();
+    
+    //Complete order
+    await checkoutPage.finishOrder();
+    
+    //Verify completion
+    await expect(page).toHaveURL(/checkout-complete/);
+    await checkoutPage.verifyOrderComplete();
+    
+    // Navigate back to products
+    await checkoutPage.backToProducts();
+    await expect(page).toHaveURL(/inventory/);
+    
+    console.log('✅ Complete checkout flow test passed!');
   });
 
 
