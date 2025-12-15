@@ -1,4 +1,4 @@
-const { defineConfig } = require('@playwright/test');
+const { defineConfig, devices } = require('@playwright/test');
 
 module.exports = defineConfig({
   testDir: './src/tests',
@@ -10,7 +10,7 @@ module.exports = defineConfig({
   },
   
   // 🔄 Retry failed tests
-  retries: process.env.CI ? 2 : 2,   // 2 retries in CI, 1 locally
+  retries: process.env.CI ? 2 : 1,   // 2 retries in CI, 1 locally
   
   // 🎭 Browser settings
   use: {
@@ -37,20 +37,40 @@ module.exports = defineConfig({
     navigationTimeout: 30000
   },
   
-  // 📋 Multiple reporters
+  // 📊 Reporter configuration
   reporter: [
     ['list'],
-    ['html', { outputFolder: 'reports/html-report', open: 'never' }],
-    ['json', { outputFile: 'reports/test-results.json' }]
+    ['html', { 
+      outputFolder: 'reports/html-report', 
+      open: 'never' 
+    }],
+    ['json', { 
+      outputFile: 'reports/test-results.json' 
+    }],
+    ['junit', { 
+      outputFile: 'reports/junit.xml' 
+    }]
   ],
+
   
   // 🌐 Browser projects
   projects: [
     {
       name: 'chromium',
-      use: { browserName: 'chromium' }
+      use: { ...devices['Desktop Chrome'] },
     },
-
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+    {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 12'] },
+    },
     {
       name: 'API Tests',
       testMatch: /.*api.*\.spec\.js/,
