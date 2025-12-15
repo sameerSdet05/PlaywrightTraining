@@ -16,6 +16,10 @@ module.exports = defineConfig({
   use: {
     headless: true,
     baseURL: 'https://www.saucedemo.com',
+    extraHTTPHeaders: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     
     //Screenshots on failure
     screenshot: 'only-on-failure',
@@ -45,6 +49,11 @@ module.exports = defineConfig({
     {
       name: 'chromium',
       use: { browserName: 'chromium' }
+    },
+
+    {
+      name: 'API Tests',
+      testMatch: /.*api.*\.spec\.js/,
     }
   ]
 });
