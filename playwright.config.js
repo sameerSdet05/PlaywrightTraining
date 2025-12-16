@@ -49,6 +49,12 @@ module.exports = defineConfig({
     }],
     ['junit', { 
       outputFile: 'reports/junit.xml' 
+    }],
+     // 🎯 Allure Reporter
+    ['allure-playwright', {
+      detail: true,
+      outputFolder: 'allure-results',
+      suiteTitle: false
     }]
   ],
 
@@ -67,13 +73,17 @@ module.exports = defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
-    },
+    // {
+    //   name: 'Mobile Safari',
+    //   use: { ...devices['iPhone 12'] },
+    // },
     {
       name: 'API Tests',
       testMatch: /.*api.*\.spec\.js/,
+    },
+    {
+      name: 'UI Tests',
+      testMatch: /.*ui.*\.spec\.js/,
     }
   ]
 });

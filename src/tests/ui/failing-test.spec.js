@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { SauceLoginPage } = require('../pages/SauceLoginPage');
+const { SauceLoginPage } = require('../../pages/SauceLoginPage');
 
 test.describe('Failing Tests - Artifact Generation', () => {
   
