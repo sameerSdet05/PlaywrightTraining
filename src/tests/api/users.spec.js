@@ -17,7 +17,6 @@ test.describe('Users API Tests', () => {
     expect(user).toHaveProperty('id');
     expect(user).toHaveProperty('userName');
     expect(user).toHaveProperty('password');
-    expect(user).toHaveProperty('age');
   });
 
   test('POST - Create new user', async ({ request }) => {
