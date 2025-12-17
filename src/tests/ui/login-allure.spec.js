@@ -14,7 +14,6 @@ test.describe('Login Tests with Allure Annotations', () => {
 
   test('Successful login with standard user', async ({ page }) => {
 
-    test.retries(1);
 
     let loginPage = new SauceLoginPage(page);
     //initialize page

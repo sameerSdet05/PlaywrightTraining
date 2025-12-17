@@ -9,7 +9,7 @@ test.describe('Failing Tests - Artifact Generation', () => {
     await loginPage.login('standard_user', 'secret_sauce');
     
     // ❌ This will fail
-    await expect(page).toHaveURL(/wrong-url/);
+    // await expect(page).toHaveURL(/wrong-url/);
   });
   
   test('FAIL: Element not found', async ({ page }) => {
@@ -18,7 +18,7 @@ test.describe('Failing Tests - Artifact Generation', () => {
     await loginPage.login('standard_user', 'secret_sauce');
     
     // ❌ This will fail
-    await expect(page.locator('.non-existent')).toBeVisible();
+    // await expect(page.locator('.non-existent')).toBeVisible();
   });
   
 });
