@@ -8,6 +8,9 @@ module.exports = defineConfig({
   expect: {
     timeout: 10000                   // 10s for assertions
   },
+
+  fullyParallel: true,              // Run files in parallel
+  workers: process.env.CI ? 2 : 4,  // 2 workers in CI, 4 locally
   
   // 🔄 Retry failed tests
   retries: process.env.CI ? 2 : 1,   // 2 retries in CI, 1 locally
@@ -50,7 +53,7 @@ module.exports = defineConfig({
     ['junit', { 
       outputFile: 'reports/junit.xml' 
     }],
-     // 🎯 Allure Reporter
+    // 🎯 Allure Reporter
     ['allure-playwright', {
       detail: true,
       outputFolder: 'allure-results',

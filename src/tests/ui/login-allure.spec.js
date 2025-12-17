@@ -14,6 +14,11 @@ test.describe('Login Tests with Allure Annotations', () => {
 
   test('Successful login with standard user', async ({ page }) => {
 
+    test.retries(1);
+
+    let loginPage = new SauceLoginPage(page);
+    let inventoryPage = new SauceInventoryPage(page);
+
     // 📝 Allure metadata
     description('Verify that standard user can login successfully');
     owner('QA Team');
@@ -21,18 +26,15 @@ test.describe('Login Tests with Allure Annotations', () => {
     severity(Severity.CRITICAL);
 
     await test.step('Navigate to login page', async () => {
-      const loginPage = new SauceLoginPage(page);
       await loginPage.goto();
     });
 
     await test.step('Enter credentials and login', async () => {
-      const loginPage = new SauceLoginPage(page);
       await loginPage.login('standard_user', 'secret_sauce');
     });
 
     await test.step('Verify successful login', async () => {
       await expect(page).toHaveURL(/inventory/);
-      const inventoryPage = new SauceInventoryPage(page);
       await inventoryPage.waitForInventoryLoad();
     });
 
