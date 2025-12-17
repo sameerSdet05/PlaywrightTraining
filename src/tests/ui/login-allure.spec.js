@@ -17,6 +17,7 @@ test.describe('Login Tests with Allure Annotations', () => {
     test.retries(1);
 
     let loginPage = new SauceLoginPage(page);
+    //initialize page
     let inventoryPage = new SauceInventoryPage(page);
 
     // 📝 Allure metadata
